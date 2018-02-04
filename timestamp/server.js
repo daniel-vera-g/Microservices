@@ -16,6 +16,8 @@ const path = require("path");
 
 const router = express.Router();
 
+//make the routes
+let routes = require('./controller/controller');
 
 let app = express();
 
@@ -28,19 +30,26 @@ app.use(cookieParser());
 // Insert static content here - before the dynamic one
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
-// middleware for the routes to know where to look for the routes
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout: 'layouts'}));
 app.set('view engine', 'handlebars');
 
+//Body pareser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(cookieParser());
 
-// HTTP & HTTPS server
-let httpServer = http.createServer(app);
+//middleware for the routes
+app.use('/', routes);
 
-httpServer.listen(80, () => {
-    console.log('The server has started on port 80');
+// set the port
+app.set('port', (process.env.PORT || 3000));
+
+// listen to port
+app.listen(app.get('port'), function(){
+	console.log('Server started at port' + app.get('port'));
 });
 
 module.exports = router;
