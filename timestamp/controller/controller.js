@@ -11,9 +11,15 @@ router.get('/', (req, res, next) => {
 
 // get date
 router.get("/:date", function(req, res, next) {
+  let date = req.params;
+  date = date.date;
+  console.log("The request parameter is :" + date);
 
-  let time = req.body.date;
-  console.log(date);
+  //call functions to get right time values
+  timeObject = timeStamp.checkTime(date, (err) => {
+    if (err) throw err;
+  })
+  res.send(timeObject);
 });
 
 module.exports = router;

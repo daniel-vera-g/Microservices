@@ -12,16 +12,24 @@ let date = new Date();
  */
 ex.checkTime = (time, callback) => {
   //check if the input is in unix time
-
-  //Test whether natural language is right
+  console.log("The time is " + time);
+  
+  //Test whether natural language is right or if it is unix language
   let valid = new Date(time).getTime() > 1;
+  console.log("The time format is natural time: " + valid);
+  
   if (valid) {
     //get the unix time from the natural one
     let unix = new Date(time).getTime();
+    console.log("The unix time is: " + unix);
 
     let natural = time;
+    console.log("The natural time is: " + natural);
+    
   } else {
     let unix = time;
+    console.log("The unix time is " + unix);
+    
     //get year
     let date = new Date(time);
     let year = date.getFullYear();
@@ -71,12 +79,12 @@ ex.checkTime = (time, callback) => {
         break;
     }
     let natural = month + " " + day + ", " + year;
+    console.log("The natural time is " + natural);
+    
   }
   //time object to send back
   let timeObject = { unix: unix, natural: natural };
+  console.log("The time object is " + timeObject);
+  
   return timeObject;
 };
-
-// ex.toUnix = (time, callback) => {};
-
-// ex.toNatural = (time, callback) => {};
