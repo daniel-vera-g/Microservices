@@ -4,7 +4,12 @@ let timeStamp = require("./timestampfunctions");
 
 let router = express.Router();
 
-// get homepage
+//home handler
+router.get('/', (req, res, next) => {
+  res.render('home');
+})
+
+// get date
 router.get("/:date", function(req, res, next) {
 
   let time = req.body.date;
