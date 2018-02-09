@@ -32,6 +32,7 @@ app.use(cookieParser());
 
 //middleware for the routes
 app.use('/', routes);
+app.use('/:data', routes);
 
 // set the port
 app.set('port', (process.env.PORT || 3000));
