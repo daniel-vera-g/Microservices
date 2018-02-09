@@ -23,10 +23,12 @@ ex.checkTime = (time, callback) => {
     processedDate.unix = +time;
     processedDate.natural = moment.unix(+time).format("MMM D, YYYY");
   }
+
   //check if the time is NaN & if it is in the right format
   if (isNaN(+time) && moment(time, "MMM DD, YYYY").isValid()) {
     processedDate.unix = moment(time, "MMM DD, YYYY").format("X");
     processedDate.natural = time;
   }
+  
   return processedDate;
 };

@@ -19,6 +19,7 @@ router.get("/:date", function(req, res, next) {
   timeObject = timeStamp.checkTime(date, (err) => {
     if (err) throw err;
   })
+  
   res.send(timeObject);
 });
 
