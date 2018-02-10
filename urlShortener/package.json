@@ -1,0 +1,17 @@
+{
+  "name": "requestheadermicroservice",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "nodemon": "^1.14.12"
+  },
+  "version": "1.0.0",
+  "description": "A Request Header microsevice",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
