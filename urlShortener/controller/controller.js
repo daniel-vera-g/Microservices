@@ -9,8 +9,4 @@ let router = express.Router();
 router.get('/new/:url(*)', (req, res, next) => {
 
 })
-
-//router to query existing URL
-router.get('/')
-
 module.exports = router;
