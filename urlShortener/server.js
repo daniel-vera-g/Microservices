@@ -12,6 +12,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+//Viewengine
+const handlebars = require('handlebars');
+
 
 //mongoDb
 const mongodb = require('mongodb');
@@ -48,6 +51,11 @@ app.use(cookieParser());
 //middleware for the routes
 app.use('/', routes);
 app.use('/new/:', routes);
+
+// View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({defaultLayout: 'layouts'}));
+app.set('view engine', 'handlebars');
 
 // set the port
 app.set('port', (process.env.PORT || 3000));
