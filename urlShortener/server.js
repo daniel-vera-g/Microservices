@@ -22,6 +22,7 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 //connection url
 const url = process.env.MONGOLABURL_URI;
+
 //connect Method to connect to server
 MongoClient.connect(url, (err, db) => {
 	if (err) console.log('Unable to connect to MongoDB server. Error: ', err);

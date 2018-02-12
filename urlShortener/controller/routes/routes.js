@@ -7,11 +7,17 @@ let router = express.Router();
 
 //home route
 router.get('/', (req, res, next) => {
-    res.render('index', );
-})
+    res.render('index');
+});
 
-//router to make new shortened URl
-router.get('/new/:url(*)', (req, res, next) => {
+//create and return short url from longUrl 
+router.post('/api/shorten', (req, res, nect) => {
+    //call the api to create short url
+});
 
-})
+// redirect user to original url given the short url
+router.get('/:encoded_id', (req, res, next) => {
+    //get url and redirect the user
+});
+
 module.exports = router;
