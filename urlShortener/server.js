@@ -20,27 +20,6 @@ const cookieParser = require('cookie-parser');
 const handlebars = require('express-handlebars');
 
 
-/* //mongoDb
-const mongodb = require('mongodb');
-//mongo Client interface to connect to mongodb server
-const MongoClient = mongodb.MongoClient;
-//connection url
-const url = process.env.MONGOLAB_URI;
-
-//connect Method to connect to server
-MongoClient.connect(url, (err, db) => {
-	if (err) console.log('Unable to connect to MongoDB server. Error: ', err);
-
-	console.log('Connection established to ', url);
-	
-	// ...
-
-	//close connection
-	db.close();
-	
-}) */
-
-
 const router = express.Router();
 
 //make the routes
