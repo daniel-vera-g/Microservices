@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 });
 
 //create and return short url from longUrl 
-router.post('/api/shorten', (req, res, nect) => {
+router.get('/api/shorten', (req, res, nect) => {
     //call the api to create short url
 });
 
