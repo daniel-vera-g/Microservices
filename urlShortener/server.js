@@ -20,7 +20,7 @@ const cookieParser = require('cookie-parser');
 const handlebars = require('express-handlebars');
 
 
-//mongoDb
+/* //mongoDb
 const mongodb = require('mongodb');
 //mongo Client interface to connect to mongodb server
 const MongoClient = mongodb.MongoClient;
@@ -38,7 +38,7 @@ MongoClient.connect(url, (err, db) => {
 	//close connection
 	db.close();
 	
-})
+}) */
 
 
 const router = express.Router();
