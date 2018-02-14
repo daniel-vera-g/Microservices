@@ -5,9 +5,10 @@
  * @desc  Controller to handle incoming requests
 */
 
-let bodyParser = require("body-parser");
-let express = require("express");
-let router = express.Router();
+const express = require("express");
+const bodyParser = require("body-parser");
+const urlAPI = require('../api/urlApi');
+const router = express.Router();
 
 //home route
 router.get('/', (req, res, next) => {
@@ -15,13 +16,18 @@ router.get('/', (req, res, next) => {
 });
 
 //create and return short url from longUrl 
-router.get('/api/shorten', (req, res, nect) => {
+router.get('/new/:url', (req, res, nect) => {
+    //check if URL is valid
+
     //call the api to create short url
 });
 
 // redirect user to original url given the short url
-router.get('/:encoded_id', (req, res, next) => {
-    //get url and redirect the user
+router.get('/:shortened', (req, res, next) => {
+    //get url from the database
+
+    //redirect the user
+
 });
 
 module.exports = router;
