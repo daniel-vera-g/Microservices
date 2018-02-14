@@ -1,6 +1,10 @@
 /**
- * Controller to handle incoming requests
+ * @author Daniel Vera Gilliard
+ * @create date 2018-02-14 09:13:23
+ * @modify date 2018-02-14 09:13:23
+ * @desc  Controller to handle incoming requests
 */
+
 let bodyParser = require("body-parser");
 let express = require("express");
 let router = express.Router();
