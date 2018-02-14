@@ -17,4 +17,4 @@ let urlSchema = new Schema({
 });
 
 //create model from Schema
-module.exports = mongoose.model("links", urlSchema);
+module.exports =  mongoose.model("links", urlSchema);

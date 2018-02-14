@@ -7,13 +7,22 @@
 
 let ex = (module.exports = {});
 
+//Short Id to generate unique id
+const shortId = require("shortid");
+//only alphanumeric characters
+shortid.characters(
+  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@"
+);
+
 /**
  * Add short URL to the DB
  * @param  {String} longUrl original URl passed by the user
  * @param  {} callback Callback With error or short url
  */
 ex.addShortUrl = async (longUrl, callback) => {
-  return new Promise((acc, rej) => {});
+  return new Promise((acc, rej) => {
+    
+  });
 };
 
 /**
