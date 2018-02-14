@@ -3,10 +3,9 @@
  * @create date 2018-02-14 09:12:44
  * @modify date 2018-02-14 09:12:44
  * @desc API for the URL Shortener
-*/
+ */
 
 let ex = (module.exports = {});
-
 
 /**
  * Add short URL to the DB
@@ -14,7 +13,7 @@ let ex = (module.exports = {});
  * @param  {} callback Callback With error or short url
  */
 ex.addShortUrl = async (longUrl, callback) => {
-  //convert Long URL in short URL
+  return new Promise((acc, rej) => {});
 };
 
 /**
@@ -22,25 +21,33 @@ ex.addShortUrl = async (longUrl, callback) => {
  * @param  {string} shortUrl short URl created with the long URL
  * @param  {} callback Callback with Error or Long URL
  */
-ex.getLongURl = async (shortUrl, callback) => {};
+ex.getLongURl = async (shortUrl, callback) => {
+  return new Promise((acc, rej) => {});
+};
 
 /**
  * Get the short URL by the ID
  * @param  {int} UrlId Id of the Short URL in the DB
  * @param  {} callback calllback with Error or short url
  */
-ex.getShortUrl = async (UrlId, callback) => {};
+ex.getShortUrl = async (UrlId, callback) => {
+  return new Promise((acc, rej) => {});
+};
 
 /**
  * Check if the given URL is valid
  * @param  {String} url URL given by the User
  * @param  {} callback Callback with Error or booljean to see if url is valid or not
  */
-ex.validateUrl = async (url, callback) => {};
+ex.validateUrl = async (url, callback) => {
+  return new Promise((acc, rej) => {});
+};
 
 /**
  * Check if the Given URL exists in the DB
  * @param  {string} Url Url given by the User
  * @param  {} callback Callback with error or Booljean whether Url exists or not
  */
-ex.checkUrlExistense = async (Url, callback) => {};
+ex.checkUrlExistense = async (Url, callback) => {
+  return new Promise((acc, rej) => {});
+};
