@@ -12,8 +12,9 @@ let Schema = mongoose.Schema;
 
 //url shema
 let urlSchema = new Schema({
-  originalUrl: string,
-  shortUrl: string
+  _id: integer,
+  originalUrl: String,
+  shortUrl: String
 });
 
 //create model from Schema

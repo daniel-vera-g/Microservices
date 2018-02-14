@@ -6,6 +6,7 @@
  */
 
 let ex = (module.exports = {});
+const links = require('../../models/url');
 
 //Short Id to generate unique id
 const shortId = require("shortid");
@@ -21,7 +22,15 @@ shortid.characters(
  */
 ex.addShortUrl = async (longUrl, callback) => {
   return new Promise((acc, rej) => {
-    
+    //generate short url
+    let id = shortId.generate();
+    let host = 'localhost:3000/';
+
+    //create & save new link instance
+    links.create({ _id: id, originalUrl: longUrl, shortUrl: host + id}, (err, _id) => {
+      if (err) rej(err);
+      acc(_id);
+    });
   });
 };
 
