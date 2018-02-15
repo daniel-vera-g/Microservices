@@ -5,22 +5,21 @@
  * @desc API for the URL Shortener
  */
 
-let ex = (module.exports = {});
+let ex = module.exports;
 const links = require('../../models/url');
 
 //Short Id to generate unique id
 const shortId = require("shortid");
 //only alphanumeric characters
-shortid.characters(
+shortId.characters(
   "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@"
 );
 
 /**
  * Add short URL to the DB
  * @param  {String} longUrl original URl passed by the user
- * @param  {} callback Callback With error or short url
  */
-ex.addShortUrl = async (longUrl, callback) => {
+ex.addShortUrl = async (longUrl) => {
   return new Promise((acc, rej) => {
     //generate short url
     let id = shortId.generate();
@@ -37,34 +36,34 @@ ex.addShortUrl = async (longUrl, callback) => {
 /**
  * Get the Original URL from the short URL
  * @param  {string} shortUrl short URl created with the long URL
- * @param  {} callback Callback with Error or Long URL
+ * @returns original Url
  */
-ex.getLongURl = async (shortUrl, callback) => {
+ex.getLongURl = async (shortUrl) => {
   return new Promise((acc, rej) => {});
 };
 
 /**
  * Get the short URL by the ID
  * @param  {int} UrlId Id of the Short URL in the DB
- * @param  {} callback calllback with Error or short url
+ * @returns the short url from the id
  */
-ex.getShortUrl = async (UrlId, callback) => {
+ex.getShortUrl = async (UrlId) => {
   return new Promise((acc, rej) => {});
 };
 
 /**
  * Check if the given URL is valid
  * @param  {String} url URL given by the User
- * @param  {} callback Callback with Error or booljean to see if url is valid or not
+ * @requires booljean to see if url is valid or not
  */
-ex.validateUrl = async (url, callback) => {
+ex.validateUrl = async (url) => {
   return new Promise((acc, rej) => {});
 };
 
 /**
  * Check if the Given URL exists in the DB
  * @param  {string} Url Url given by the User
- * @param  {} callback Callback with error or Booljean whether Url exists or not
+ * @returns whether Url exists or not
  */
 ex.checkUrlExistense = async (Url, callback) => {
   return new Promise((acc, rej) => {});
