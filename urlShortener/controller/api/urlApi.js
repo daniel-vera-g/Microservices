@@ -5,6 +5,7 @@
  * @desc API for the URL Shortener
  */
 
+const debug = require('debug')('DEBUG:urlAPI');
 let ex = module.exports;
 const links = require('../../models/url');
 
@@ -18,7 +19,7 @@ shortId.characters(
 /**
  * Add short URL to the DB
  * @param  {String} longUrl original URl passed by the user
- */
+ */ 
 ex.addShortUrl = async (longUrl) => {
   return new Promise((acc, rej) => {
     //generate short url
