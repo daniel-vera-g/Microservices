@@ -12,7 +12,6 @@ let Schema = mongoose.Schema;
 
 //url shema
 let urlSchema = new Schema({
-  _id: integer,
   originalUrl: String,
   shortUrl: String
 });

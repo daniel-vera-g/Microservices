@@ -6,7 +6,7 @@
 */
 
 //debug
-const debug = require("debug")("server.js");
+const debug = require("debug")("DEBUG:server");
 const name = "url-Shortener";
 debug("booting %s", name);
 
@@ -36,10 +36,10 @@ let app = express();
 
 // mongoose
 const mongoose = require("mongoose");
-
 // default mongoose connection
 //const mongoDB = process.env.MONGOLAB_URI;
-const mongoDB = "mongodb://dvg:12344321@ds229388.mlab.com:29388/short-url";
+const mongoDB = process.env.MONGOLAB_URI;
+debug("connecting to the database");
 mongoose.connect(mongoDB);	
 //get mongoose use global promise library
 mongoose.Promise = global.Promise;
