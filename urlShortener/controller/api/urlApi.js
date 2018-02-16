@@ -49,7 +49,11 @@ ex.addShortUrl = async longUrl => {
  * @returns original Url
  */
 ex.getLongURl = async shortUrl => {
-  return new Promise((acc, rej) => {});
+  return new Promise((acc, rej) => {
+    debug("Getting the originla url with the shortUrl %s", shortUrl);
+
+    links.
+  });
 };
 
 /**
