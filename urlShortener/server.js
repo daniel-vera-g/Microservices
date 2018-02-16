@@ -13,6 +13,9 @@ debug("booting %s", name);
 //dotenv
 require("dotenv").config();
 
+// mongoose
+const mongoose = require("mongoose");
+
 // NodeJS elements
 const http = require("http");
 const path = require("path");
@@ -34,8 +37,6 @@ let routes = require("./controller/routes/routes.js");
 
 let app = express();
 
-// mongoose
-const mongoose = require("mongoose");
 // default mongoose connection
 //const mongoDB = process.env.MONGOLAB_URI;
 const mongoDB = process.env.MONGOLAB_URI;
