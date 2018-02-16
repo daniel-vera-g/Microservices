@@ -6,7 +6,7 @@
  */
 
 const debug = require("debug")("DEBUG:urlAPI");
-const validUrl = require('valid-url');
+const validUrl = require("valid-url");
 const ex = module.exports;
 const links = require("../../models/url");
 
@@ -34,7 +34,10 @@ ex.addShortUrl = async longUrl => {
       { _id: id, originalUrl: longUrl, shortUrl: host + id },
       (err, _id) => {
         if (err) {
-          debug("ERROR creating new short URl in the DB with the longURL %S", longUrl);
+          debug(
+            "ERROR creating new short URl in the DB with the longURL %S",
+            longUrl
+          );
           rej(err);
         }
         debug("Short url with the id %s created", id);
@@ -53,17 +56,23 @@ ex.getLongURl = async shortUrl => {
   return new Promise((acc, rej) => {
     debug("Getting the originla url with the shortUrl %s", shortUrl);
 
-    links.find({'shortUrl': shortUrl}, longUrl, (err, longUrl) => {
+    links.find({ shortUrl: shortUrl }, longUrl, (err, longUrl) => {
       if (err) {
-        debug("Error getting the name of the original URl with the short url of %s", shortUrl);
+        debug(
+          "Error getting the name of the original URl with the short url of %s",
+          shortUrl
+        );
         rej(err);
       }
-      debug("Original url %s with the short url of %s successfully requested",longUrl, shortUrl );
+      debug(
+        "Original url %s with the short url of %s successfully requested",
+        longUrl,
+        shortUrl
+      );
       acc(longUrl);
-    })
+    });
   });
 };
-
 
 /**
  * Check if the given URL is valid
@@ -83,18 +92,28 @@ ex.validateUrl = async url => {
 
     if (err) {
       debug("There was an error checking for the valid url");
-      rej(err);      
+      rej(err);
     }
   });
 };
 
 /**
  * Check if the Given URL exists in the DB
- * @param  {string} Url Url given by the User
- * @returns whether Url exists or not
+ * @param  {string} Url given by the User
+ * @returns {booljean} whether Url exists or not
  */
-ex.checkUrlExistense = async (Url, callback) => {
-  return new Promise((acc, rej) => {});
+ex.checkUrlExistense = async url => {
+  return new Promise((acc, rej) => {
+    debug("Checking if url %s exists in the DB", url);
+    links.find({ originalUrl: url }, shortUrl, (err, shortUrl) => {
+      if (err) {
+        debug("No url %s found in the DB", url);
+        rej(err);
+      }
+      debug("The url %s exits in the DB", longUrl);
+      acc(shortUrl);
+    });
+  });
 };
 
 /**
