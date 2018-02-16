@@ -52,7 +52,14 @@ ex.getLongURl = async shortUrl => {
   return new Promise((acc, rej) => {
     debug("Getting the originla url with the shortUrl %s", shortUrl);
 
-    links.
+    links.find({'shortUrl': shortUrl}, longUrl, (err, longUrl) => {
+      if (err) {
+        debug("Error getting the name of the original URl with the short url of %s", shortUrl);
+        rej(err);
+      }
+      debug("Original url %s with the short url of %s successfully requested",longUrl, shortUrl );
+      acc(longUrl);
+    })
   });
 };
 
