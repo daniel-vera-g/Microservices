@@ -6,7 +6,8 @@
  */
 
 const debug = require("debug")("DEBUG:urlAPI");
-let ex = module.exports;
+const validUrl = require('valid-url');
+const ex = module.exports;
 const links = require("../../models/url");
 
 //Short Id to generate unique id
@@ -63,14 +64,6 @@ ex.getLongURl = async shortUrl => {
   });
 };
 
-/**
- * Get the short URL by the ID
- * @param  {int} UrlId Id of the Short URL in the DB
- * @returns the short url from the id
- */
-ex.getShortUrl = async UrlId => {
-  return new Promise((acc, rej) => {});
-};
 
 /**
  * Check if the given URL is valid
@@ -78,7 +71,9 @@ ex.getShortUrl = async UrlId => {
  * @requires booljean to see if url is valid or not
  */
 ex.validateUrl = async url => {
-  return new Promise((acc, rej) => {});
+  return new Promise((acc, rej) => {
+
+  });
 };
 
 /**
@@ -89,3 +84,15 @@ ex.validateUrl = async url => {
 ex.checkUrlExistense = async (Url, callback) => {
   return new Promise((acc, rej) => {});
 };
+
+/**
+ * Get the short URL by the ID
+ * @param  {int} UrlId Id of the Short URL in the DB
+ * @returns the short url from the id
+ */
+/* ex.getShortUrl = async UrlId => {
+  return new Promise((acc, rej) => {
+    
+  });
+};
+*/
