@@ -68,11 +68,23 @@ ex.getLongURl = async shortUrl => {
 /**
  * Check if the given URL is valid
  * @param  {String} url URL given by the User
- * @requires booljean to see if url is valid or not
+ * @returns booljean to see if url is valid or not
  */
 ex.validateUrl = async url => {
   return new Promise((acc, rej) => {
+    debug("Checking if %s is a valid url", url);
+    if (validUrl.isUri(url)) {
+      console.log("Looks like an URI");
+      acc(true);
+    } else {
+      console.log("Not a URI");
+      acc(false);
+    }
 
+    if (err) {
+      debug("There was an error checking for the valid url");
+      rej(err);      
+    }
   });
 };
 
