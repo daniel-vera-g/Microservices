@@ -24,32 +24,24 @@ shortId.characters(
  */
 
 ex.addShortUrl = async longUrl => {
+  debug("adding short url with the longURL %s", longUrl);
 
-  let p =  new Promise((acc, rej) => {
-    debug("adding short url with the longURL %s", longUrl);
-    //generate short url
-    let id = shortId.generate();  
-    let host = "localhost:3000/";
+  let p = new PromiPse(acc => {
+    //generate short id for the shortened Link
+    let id = shortId.generate();
 
     //create & save new link instance
-    links.create(
-      { originalUrl: longUrl, shortUrl: id},
-      (err, shortUrl) => {
-        if (err) {
-          debug(
-            "ERROR creating new short URl in the DB with the longURL %S",
-            longUrl
-          );
-          rej(err);
-        }
-        debug("Short url with the id %s created", id);
-        acc(shortUrl);
-      }
-    );
+    links.create({ originalUrl: longUrl, shortUrl: id }, (err, link) => {
+      if (err) {
+        debug("ERROR: %s ,creating a new short URl in the DB with the longURL %s", err, longUrl);
+      };
+      debug("created link with the shortUrl %s", link.shortUrl);
+      acc(link.shortUrl);
+    });
   });
-
-  let shortUrl = await p;
-  return shortUrl;
+  let short = await p;
+  //return shortUrl
+  return short;
 };
 
 /**
@@ -57,16 +49,24 @@ ex.addShortUrl = async longUrl => {
  * @param  {string} shortUrl short URl created with the long URL
  * @returns original Url
  */
-ex.getLongURl = async aShortUrl => {
+ex.getLongURl = async shortUrl => {
+  
   let p = new Promise((acc, rej) => {
-    debug("Getting the originl url with the shortUrl %s", aShortUrl);
+    debug("Getting the original url with the shortUrl %s", aShortUrl);
 
-    links.find({ shortUrl: aShortUrl }, 'originalUrl', (err, originalUrl) => {
+    links.find({ shortUrl: aShortUrl }, "originalUrl", (err, originalUrl) => {
       if (err) {
-        debug("Error getting the name of the original URl with the short url of %s", aShortUrl);
+        debug(
+          "Error getting the name of the original URl with the short url of %s",
+          aShortUrl
+        );
         rej(err);
       }
-      debug("Original url %s with the short url of %s successfully requested", originalUrl, aShortUrl);
+      debug(
+        "Original url %s with the short url of %s successfully requested",
+        originalUrl,
+        aShortUrl
+      );
       acc(originalUrl);
     });
   });
@@ -106,9 +106,9 @@ ex.validateUrl = async url => {
  * @returns {booljean} whether Url exists or not
  */
 ex.checkUrlExistence = async url => {
-  let p =  new Promise((acc, rej) => {
+  let p = new Promise((acc, rej) => {
     debug("Checking if url %s exists in the DB", url);
-    links.find({ originalUrl: url }, 'shortUrl', (err, shortUrl) => {
+    links.find({ originalUrl: url }, "shortUrl", (err, shortUrl) => {
       if (err) {
         debug("No url %s found in the DB", url);
         rej(err);
