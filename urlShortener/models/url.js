@@ -15,6 +15,5 @@ let urlSchema = new Schema({
   originalUrl: String,
   shortUrl: String
 });
-debug("created sheema for the DB");
 //create model from Schema
 module.exports =  mongoose.model("links", urlSchema);

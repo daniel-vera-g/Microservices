@@ -14,7 +14,7 @@
   "description": "A Request Header microsevice",
   "main": "server.js",
   "scripts": {
-    "test": "mocha || true",
+    "test": "DEBUG=DEBUG:* mocha || true",
     "start": "DEBUG=DEBUG:* nodemon server.js"
   },
   "author": "",
