@@ -23,7 +23,8 @@ shortId.characters(
  */
 
 ex.addShortUrl = async longUrl => {
-  return new Promise((acc, rej) => {
+
+  let p =  new Promise((acc, rej) => {
     debug("adding short url with the longURL %s", longUrl);
     //generate short url
     let id = shortId.generate();
@@ -45,6 +46,9 @@ ex.addShortUrl = async longUrl => {
       }
     );
   });
+
+  let gfId = await p;
+  return gfId;
 };
 
 /**
@@ -53,7 +57,7 @@ ex.addShortUrl = async longUrl => {
  * @returns original Url
  */
 ex.getLongURl = async shortUrl => {
-  return new Promise((acc, rej) => {
+  let p = new Promise((acc, rej) => {
     debug("Getting the originla url with the shortUrl %s", shortUrl);
 
     links.find({ shortUrl: shortUrl }, longUrl, (err, longUrl) => {
@@ -72,6 +76,9 @@ ex.getLongURl = async shortUrl => {
       acc(longUrl);
     });
   });
+
+  let origUrl = await p;
+  return origUrl;
 };
 
 /**
@@ -80,7 +87,7 @@ ex.getLongURl = async shortUrl => {
  * @returns booljean to see if url is valid or not
  */
 ex.validateUrl = async url => {
-  return new Promise((acc, rej) => {
+  let p = new Promise((acc, rej) => {
     debug("Checking if %s is a valid url", url);
     if (validUrl.isUri(url)) {
       console.log("Looks like an URI");
@@ -95,6 +102,8 @@ ex.validateUrl = async url => {
       rej(err);
     }
   });
+  let valid = await p;
+  return valid;
 };
 
 /**
@@ -103,7 +112,7 @@ ex.validateUrl = async url => {
  * @returns {booljean} whether Url exists or not
  */
 ex.checkUrlExistense = async url => {
-  return new Promise((acc, rej) => {
+  let p =  new Promise((acc, rej) => {
     debug("Checking if url %s exists in the DB", url);
     links.find({ originalUrl: url }, shortUrl, (err, shortUrl) => {
       if (err) {
@@ -114,16 +123,6 @@ ex.checkUrlExistense = async url => {
       acc(shortUrl);
     });
   });
+  let existence = await p;
+  return existence;
 };
-
-/**
- * Get the short URL by the ID
- * @param  {int} UrlId Id of the Short URL in the DB
- * @returns the short url from the id
- */
-/* ex.getShortUrl = async UrlId => {
-  return new Promise((acc, rej) => {
-    
-  });
-};
-*/
