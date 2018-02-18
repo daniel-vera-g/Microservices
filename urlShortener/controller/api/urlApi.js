@@ -96,7 +96,7 @@ ex.validateUrl = async url => {
     }
   });
   let valid = await p;
-  return valid;
+  return valid; 
 };
 
 /**
