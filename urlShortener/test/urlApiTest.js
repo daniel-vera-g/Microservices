@@ -1,7 +1,9 @@
-const assert = require('chai').assert;
-const debug = require('debug')('DEBUG:tests');
-const urlApi = require('../controller/api/urlApi');
-const should = require('should');
+const assert = require("chai").assert;
+const debug = require("debug")("DEBUG:tests");
+const urlApi = require("../controller/api/urlApi");
+const should = require("should");
+// mongoose
+const mongoose = require("mongoose");
 /*
 let test = async () =>  {
     debug('adding short url');
@@ -13,19 +15,34 @@ let test = async () =>  {
 
 test();
  */
-
-
-describe('UrlAPI', () => {
-    //addShortUrl test 
-    describe('addShortUrl()', () => {
-        it('addShortUrl should return a string', async () => {
-            let addShortUrlResult = await urlApi.addShortUrl("www.testweb.com");
-            assert.typeOf(addShortUrlResult, "string");
-            done();
-        });
-    });
+before(() => {
+  // default mongoose connection
+  const mongoDB = "mongodb://dvg:dvg@ds229388.mlab.com:29388/short-url";
+  debug("connecting to the database");
+  mongoose.connect(mongoDB);
+  //get mongoose use global promise library
+  mongoose.Promise = global.Promise;
+  // get default connection
+  const db = mongoose.connection;
+  //binf connection to error event
+  db.once("open", () => {debug("connected");});
+  db.on("error", console.error.bind(console, "MongoDB connection err:"));
 });
-    //TODO
+
+describe("UrlAPI", () => {
+  //addShortUrl test
+  describe("addShortUrl()", () => {
+    it("addShortUrl should return a string", async () => {
+      let addShortUrlResult = await urlApi.addShortUrl("www.testweb.com");
+      assert.typeOf(addShortUrlResult, "string");
+    });
+  });
+});
+
+after(() => {
+  mongoose.connection.close();
+});
+//TODO
 /*     //getLongUrl test 
     describe('getLongUrl()', () => {
         it('should return a string', async () => {
