@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 });
 
 //create and return short url from longUrl
-router.get("/new/:url", async (req, res, next) => {
+router.get("/new/:url(*)", async (req, res, next) => {
   let url = req.params.url;
   debug(url);
   
@@ -37,8 +37,22 @@ router.get("/new/:url", async (req, res, next) => {
 });
 
 // redirect user to original url given the short url
-router.get("/:shortened", (req, res, next) => {
-  //get url from the database
+router.get("/:shortened", async (req, res, next) => {
+    let shortLink = req.params.shortened;
+    debug('requesting for a short link %s', shortLink);
+
+    //check if url exists and get url from the database
+    debug('quering the original url for %s', shortLink);
+    let urlExistence = await urlAPI.getLongURl(shortLink);
+    debug('The original url is %s', urlExistence);
+
+    if(urlExistence == false) {
+        debug('The existence of the url is %s', urlExistence);
+        res.send('Short link does not exist. Please check the link or create one first');
+    }else{
+        res.redirect(urlExistence);
+    }
+
   //redirect the user
 });
 

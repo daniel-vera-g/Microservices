@@ -24,11 +24,11 @@ shortId.characters(
  */
 ex.addShortUrl = async longUrl => {
   debug("adding short url with the longURL %s", longUrl);
-
+  
   let p = new Promise(acc => {
     //generate short id for the shortened Link
     let id = shortId.generate();
-
+    
     //create & save new link instance
     links.create({ originalUrl: longUrl, shortUrl: id }, (err, link) => {
       if (err) {
@@ -41,37 +41,6 @@ ex.addShortUrl = async longUrl => {
   let short = await p;
   //return shortUrl
   return short;
-};
-
-/**
- * Get the Original URL from the short URL
- * @param  {string} shortUrl short URl created with the long URL
- * @returns original Url
- */
-ex.getLongURl = async shortUrl => {
-  
-  let p = new Promise((acc, rej) => {
-    debug("Getting the original url with the shortUrl %s", aShortUrl);
-
-    links.find({ shortUrl: aShortUrl }, "originalUrl", (err, originalUrl) => {
-      if (err) {
-        debug(
-          "Error getting the name of the original URl with the short url of %s",
-          aShortUrl
-        );
-        rej(err);
-      }
-      debug(
-        "Original url %s with the short url of %s successfully requested",
-        originalUrl,
-        aShortUrl
-      );
-      acc(originalUrl);
-    });
-  });
-
-  let origUrl = await p;
-  return origUrl;
 };
 
 /**
@@ -98,6 +67,40 @@ ex.validateUrl = async url => {
   let valid = await p;
   return valid; 
 };
+
+
+/**
+ * Get the Original URL from the short URL
+ * @param  {string} shortUrl short URl created with the long URL
+ * @returns original Url
+ */
+ex.getLongURl = async shortUrl => {
+  
+  let p = new Promise((acc, rej) => {
+    debug("Getting the original url with the shortUrl %s", shortUrl);
+
+    links.findOne({ shortUrl: shortUrl }, "originalUrl", (err, url) => {
+      if (err) {
+        debug(
+          "Error getting the name of the original URl with the short url of %s",
+          shortUrl
+        );
+        rej(false);
+      }
+      debug(
+        "Original url %s with the short url of %s successfully requested",
+        url,
+        shortUrl
+      );
+      originalUrl = url["originalUrl"];
+      debug('The original url is %s', originalUrl);
+      acc(originalUrl);
+    });
+  });
+  let origUrl = await p;
+  return origUrl;
+};
+
 
 /**
  * Check if the Given URL exists in the DB
