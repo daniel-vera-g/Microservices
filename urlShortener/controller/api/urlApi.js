@@ -22,11 +22,10 @@ shortId.characters(
  * @param  {String} longUrl original URl passed by the user
  * @returns {string} shortUrl generated from the longUrl
  */
-
 ex.addShortUrl = async longUrl => {
   debug("adding short url with the longURL %s", longUrl);
 
-  let p = new PromiPse(acc => {
+  let p = new Promise(acc => {
     //generate short id for the shortened Link
     let id = shortId.generate();
 

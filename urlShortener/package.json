@@ -8,6 +8,7 @@
     "mongoose": "^5.0.6",
     "nodemon": "^1.15.0",
     "shortid": "^2.2.8",
+    "should": "^13.2.1",
     "valid-url": "^1.0.9"
   },
   "version": "1.0.0",

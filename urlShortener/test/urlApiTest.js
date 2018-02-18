@@ -1,6 +1,7 @@
 const assert = require('chai').assert;
 const debug = require('debug')('DEBUG:tests');
 const urlApi = require('../controller/api/urlApi');
+const should = require('should');
 /*
 let test = async () =>  {
     debug('adding short url');
@@ -14,16 +15,17 @@ test();
  */
 
 
-//TODO
-/* describe('UrlAPI', () => {
+describe('UrlAPI', () => {
     //addShortUrl test 
     describe('addShortUrl()', () => {
-    it('addShortUrl should return a string', async () => {
-            let addShortUrlResult = await urlApi.addShortUrl("https://www.youtube.com");
-            assert.typeOf(addShortUrlResult, 'string');
+        it('addShortUrl should return a string', async () => {
+            let addShortUrlResult = await urlApi.addShortUrl("https://www.testweb.com");
+            assert.typeOf(addShortUrlResult, "string");
         });
     });
-    //getLongUrl test 
+});
+    //TODO
+/*     //getLongUrl test 
     describe('getLongUrl()', () => {
         it('should return a string', async () => {
             let getLongUrlResult = await urlApi.getLongURl("jjljl33423");
