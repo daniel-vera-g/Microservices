@@ -21,7 +21,6 @@ describe('UrlAPI', () => {
         it('addShortUrl should return a string', async () => {
             let addShortUrlResult = await urlApi.addShortUrl("www.testweb.com");
             assert.typeOf(addShortUrlResult, "string");
-            done();
         });
     });
 });
