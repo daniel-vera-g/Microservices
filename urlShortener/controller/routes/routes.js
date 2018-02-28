@@ -31,6 +31,7 @@ router.get("/new/:url(*)", async (req, res, next) => {
   if (isValid) {
     //call the api to create short url
     let shortUrl = await urlAPI.addShortUrl(url);
+    res.send('The short url is: ' + shortUrl);
   } else {
     res.send("Url not valid. Please try another time with a valid url");
   }
