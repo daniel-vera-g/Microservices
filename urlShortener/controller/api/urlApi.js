@@ -25,7 +25,7 @@ shortId.characters(
 ex.addShortUrl = async longUrl => {
   debug("adding short url with the longURL %s", longUrl);
   
-  let p = new Promise(acc => {
+  return new Promise(acc => {
     //generate short id for the shortened Link
     let id = shortId.generate();
     
@@ -38,9 +38,9 @@ ex.addShortUrl = async longUrl => {
       acc(link.shortUrl);
     });
   });
-  let short = await p;
+  // let short = await p;
   //return shortUrl
-  return short;
+  //return short;
 };
 
 /**
