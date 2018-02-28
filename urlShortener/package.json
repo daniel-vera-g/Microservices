@@ -15,7 +15,7 @@
   "description": "A Request Header microsevice",
   "main": "server.js",
   "scripts": {
-    "test": "DEBUG=DEBUG:* mocha --timeout 25000 || true",
+    "test": "DEBUG=DEBUG:* mocha --timeout 15000 || true",
     "start": "DEBUG=DEBUG:* nodemon server.js"
   },
   "author": "",
