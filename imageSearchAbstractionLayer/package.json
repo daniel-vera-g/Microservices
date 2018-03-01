@@ -5,6 +5,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "google-images": "^2.1.0",
     "mongoose": "^5.0.6",
     "nodemon": "^1.15.0",
     "should": "^13.2.1"

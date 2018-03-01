@@ -17,11 +17,13 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 // NodeJS elements
-const http = require("http"); const app = express(); 
+const http = require("http");
 const path = require("path");
 
 // Express
 const express = require("express");
+
+ const app = express(); 
 
 // Express middleqare
 const bodyParser = require("body-parser");
@@ -35,7 +37,6 @@ const router = express.Router();
 //make the routes
 let routes = require("./controller/routes/routes.js");
 
-let app = express();
 
 // default mongoose connection
 //const mongoDB = process.env.MONGOLAB_URI;
