@@ -20,6 +20,9 @@ const path = require("path");
 // Express
 const express = require("express");
 const app = express();
+// morgan
+const morgan = require('morgan');
+app.use(morgan("combined"));
 // Express middleware
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
