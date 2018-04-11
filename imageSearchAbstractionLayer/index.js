@@ -5,7 +5,7 @@
  * Entry point of image abstraction layer
 */
 
-//debub
+//debug
 const debug = require("debug")("DEBUG:server");
 const name = "Image Search abstraction layer";
 debug("booting %s", name);
@@ -13,23 +13,20 @@ debug("booting %s", name);
 //dotenv
 require("dotenv").config();
 
-// mongoose
-const mongoose = require("mongoose");
 
 // NodeJS elements
 const http = require("http");
 const path = require("path");
-
 // Express
 const express = require("express");
-
- const app = express(); 
-
-// Express middleqare
+const app = express();
+// morgan
+const morgan = require('morgan');
+app.use(morgan("combined"));
+// Express middleware
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
-//Viewengine
+//View engine
 const handlebars = require("express-handlebars");
 
 const router = express.Router();
@@ -38,8 +35,11 @@ const router = express.Router();
 let routes = require("./controller/routes/routes.js");
 
 
+// mongoose
+const mongoose = require("mongoose");
 // default mongoose connection
 //const mongoDB = process.env.MONGOLAB_URI;
+/* 
 const mongoDB = process.env.MONGOLAB_URI;
 debug("connecting to the database");
 mongoose.connect(mongoDB);
@@ -49,7 +49,7 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 //bind connection to error event
 db.on("error", console.error.bind(console, "MongoDB connection err:"));
-
+ */
 // BodyParser Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
