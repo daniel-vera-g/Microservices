@@ -10,40 +10,40 @@ let test = async () =>  {
     let addShortUrlResult = await urlApi.addShortUrl("https://www.youtube.com");
     debug(addShortUrlResult);
     console.log(addShortUrlResult);
-    
+
 }
 
 test();
  */
 before(() => {
-  // default mongoose connection
-  const mongoDB = "mongodb://dvg:dvg@ds229388.mlab.com:29388/short-url";
-  debug("connecting to the database");
-  mongoose.connect(mongoDB);
-  //get mongoose use global promise library
-  mongoose.Promise = global.Promise;
-  // get default connection
-  const db = mongoose.connection;
-  //binf connection to error event
-  db.once("open", () => {debug("connected");});
-  db.on("error", console.error.bind(console, "MongoDB connection err:"));
+	// default mongoose connection
+	const mongoDB = "mongodb://dvg:dvg@ds229388.mlab.com:29388/short-url";
+	debug("connecting to the database");
+	mongoose.connect(mongoDB);
+	// get mongoose use global promise library
+	mongoose.Promise = global.Promise;
+	// get default connection
+	const db = mongoose.connection;
+	// binf connection to error event
+	db.once("open", () => { debug("connected"); });
+	db.on("error", console.error.bind(console, "MongoDB connection err:"));
 });
 
 describe("UrlAPI", () => {
-  //addShortUrl test
-  describe("addShortUrl()", () => {
-    it("addShortUrl should return a string", async () => {
-      let addShortUrlResult = await urlApi.addShortUrl("www.testweb.com");
-      assert.typeOf(addShortUrlResult, "string");
-    });
-  });
+	// addShortUrl test
+	describe("addShortUrl()", () => {
+		it("addShortUrl should return a string", async () => {
+			const addShortUrlResult = await urlApi.addShortUrl("www.testweb.com");
+			assert.typeOf(addShortUrlResult, "string");
+		});
+	});
 });
 
 after(() => {
-  mongoose.connection.close();
+	mongoose.connection.close();
 });
-//TODO
-/*     //getLongUrl test 
+// TODO
+/*     //getLongUrl test
     describe('getLongUrl()', () => {
         it('should return a string', async () => {
             let getLongUrlResult = await urlApi.getLongURl("jjljl33423");
