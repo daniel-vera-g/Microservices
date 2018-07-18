@@ -5,12 +5,13 @@
  * @desc server.js - The main application
 */
 
-//debug
+// debug
 const debug = require("debug")("DEBUG:server");
+
 const name = "url-Shortener";
 debug("booting %s", name);
 
-//dotenv
+// dotenv
 require("dotenv").config();
 
 // mongoose
@@ -27,27 +28,27 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
-//Viewengine
+// Viewengine
 const handlebars = require("express-handlebars");
 
 const router = express.Router();
 
-//make the routes
-let routes = require("./controller/routes/routes.js");
+// make the routes
+const routes = require("./controller/routes/routes.js");
 
-let app = express();
+const app = express();
 
 // default mongoose connection
-//const mongoDB = process.env.MONGOLAB_URI;
+// const mongoDB = process.env.MONGOLAB_URI;
 const mongoDB = process.env.MONGOLAB_URI;
 debug("connecting to the database");
-mongoose.connect(mongoDB);	
-//get mongoose use global promise library
+mongoose.connect(mongoDB);
+// get mongoose use global promise library
 mongoose.Promise = global.Promise;
 // get default connection
 const db = mongoose.connection;
 
-//binf connection to error event
+// binf connection to error event
 db.on("error", console.error.bind(console, "MongoDB connection err:"));
 
 // BodyParser Middleware
@@ -55,7 +56,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-//middleware for the routes
+// middleware for the routes
 app.use("/", routes);
 app.use("/new/:", routes);
 
@@ -68,7 +69,7 @@ app.set("view engine", "handlebars");
 app.set("port", process.env.PORT || 3000);
 
 // listen to port
-app.listen(app.get("port"), function() {
+app.listen(app.get("port"), () => {
   console.log("Server started at port" + app.get("port"));
 });
 
