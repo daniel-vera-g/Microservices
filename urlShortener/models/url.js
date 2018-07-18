@@ -7,13 +7,13 @@
 const debug = require("debug")("DEBUG:url");
 const mongoose = require("mongoose");
 
-//schema constructer
-let Schema = mongoose.Schema;
+// schema constructor
+const { Schema } = mongoose;
 
-//url shema
-let urlSchema = new Schema({
-  originalUrl: String,
-  shortUrl: String
+// url schema
+const urlSchema = new Schema({
+	originalUrl: String,
+	shortUrl: String,
 });
-//create model from Schema
-module.exports =  mongoose.model("links", urlSchema);
+// create model from Schema
+module.exports = mongoose.model("links", urlSchema);
