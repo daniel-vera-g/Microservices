@@ -1,4 +1,4 @@
-# Timestamp Microservice
+# Timestamp microservice
 
 ## How it works
 
