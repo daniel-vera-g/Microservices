@@ -1,6 +1,7 @@
 # Microservices
 
-Collection of small Microservice programs.
+* Collection of small Microservice programms.
+* For more information see the README.md file for each microservice.
 
 ## List
 
